@@ -1,0 +1,25 @@
+version: "2.2"
+services:
+
+  geth:
+    image: ethereum/client-go:stable
+    command: |
+      --datadir "/data"
+      --keystore "/keystore"
+      --syncmode light
+      --rpc
+      --rpcaddr 0.0.0.0
+      --rpcport 8545
+      --rpccorsdomain "null"
+      --ws
+      --wsaddr 0.0.0.0
+      --wsport 8546
+      --wsorigins "*"
+      --metrics
+    ports:
+      - "30303:30303"
+      - "8545:8545"
+      - "8546:8546"
+    volumes:
+      - /srv/geth/data:/data
+      - /srv/geth/keystore:/keystore
